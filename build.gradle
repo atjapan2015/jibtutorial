@@ -1,0 +1,31 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.3.RELEASE'
+	id 'java'
+	id 'com.google.cloud.tools.jib' version '1.0.2'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jibtutorial'
+version = '1.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jib {
+  to {
+    image = 'atjapan2015/jibtutorial:latest'
+    auth {
+      username = 'atjapan2015'
+      password = 'xxxxxxxxxx'
+    }
+  }
+}
